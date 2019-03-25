@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Montserrat', sans-serif;
+
+  user-select: none;
+}
+
+h1 {
+  background: red;
+  color: white;
+
+  margin-bottom: 20px;
+}
