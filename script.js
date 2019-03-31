@@ -1,4 +1,27 @@
+function addFlag(flag) {
 
+  return "<img src='img/" + flag + ".png' width='30px'>"
+}
+
+function addStars(vote) {
+
+  vote /= 2;
+
+  var star = "";
+
+  for (var i = 1; i <= 5; i++) {
+
+    if (i <= vote) {
+
+      star += '<li class="fas fa-star"></li>'
+    } else {
+
+      star += '<li class="far fa-star"></li>'
+    }
+  }
+
+  return star;
+}
 
 function clearOldResult() {
 
@@ -8,6 +31,7 @@ function clearOldResult() {
   var inputSearch = $("#input_search");
   inputSearch.val("");
 }
+
 
 function printFilms(dataList) {
 
@@ -22,18 +46,23 @@ function printFilms(dataList) {
   for (var i = 0; i < dataList.length; i++) {
 
     var data = dataList[i];
+    var vote = Math.ceil(data.vote_average);
+
     var tempData = {
 
       title: data.title,
       title_orig: data.original_title,
       language: data.original_language,
-      vote: data.vote_average,
+      flag: addFlag(data.original_language),
+      vote: vote,
+      stars: addStars(vote),
     }
 
     var film = compiled(tempData);
     container.append(film);
   }
 }
+
 
 function ajaxSearchMovie(content) {
 
@@ -167,4 +196,22 @@ $(document).ready(init);
 //       console.log("error", error);
 //     }
 //   });
+// }
+
+// function addStars(vote) {
+//
+//   var emptyStar = "<li class='far fa-star'></li>";
+//   var fullStar = "<li class='fas fa-star'></li>";
+//   var starsBox = $(".film_stars").last();
+//
+//   for (var i = 1; i <= 5; i++) {
+//     if (vote >= i) {
+//
+//       starsBox.append(fullStar);
+//     } else {
+//
+//       starsBox.append(emptyStar);
+//     }
+//   }
+//
 // }
