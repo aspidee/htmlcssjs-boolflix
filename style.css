@@ -90,12 +90,16 @@ input:focus {
 .film_box {
   height: 330px;
   width: 230px;
-  border: 1px solid #829196;
+  /* border: 1px solid #829196; */
   border-radius: 10px;
 
   margin: 15px;
   padding: 30px;
   text-align: center;
+
+  position: relative;
+
+  overflow: hidden;
 
 }
 
@@ -119,9 +123,20 @@ ul {
   list-style-type: none;
 }
 
+
+
 .films {
   padding: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.poster > img {
+  position: absolute;
+  height: 330px;
+  width: 230px;
+  border: 1px solid #829196;
+  border-radius: 10px;
+  z-index: -1;
 }

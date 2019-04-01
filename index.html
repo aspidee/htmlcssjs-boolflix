@@ -20,8 +20,12 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js" charset="utf-8"></script>
       <!-- JS: MY TEMPLATE -->
       <script id="film_template" type="text/x-handlebars-template">
+        <div class="poster">
+          <img src="{{ poster }}" alt=""/>
+        </div>
         <div class="film_box">
           <ul>
+            <li>{{ type }}</li>
             <li class="film_title">{{ title }}</li>
             <li class="film_subtitle">{{ title_orig }}</li>
             <li class="film_lang">{{ language }}</li>

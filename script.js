@@ -3,6 +3,7 @@ function addFlag(flag) {
   return "<img src='img/" + flag + ".png' width='30px'>"
 }
 
+
 function addStars(vote) {
 
   vote /= 2;
@@ -33,9 +34,7 @@ function clearOldResult() {
 }
 
 
-function printFilms(dataList) {
-
-  clearOldResult();
+function printSeriesTv(dataList) {
 
   var container = $(".films");
 
@@ -50,12 +49,91 @@ function printFilms(dataList) {
 
     var tempData = {
 
+      type: "Serie",
+      title: data.name,
+      title_orig: data.original_name,
+      language: data.original_language,
+      flag: addFlag(data.original_language),
+      vote: vote,
+      stars: addStars(vote),
+      poster: getCoverLink(data.poster_path),
+    }
+
+    var seriestv = compiled(tempData);
+    container.append(seriestv);
+  }
+}
+
+function ajaxSearchSeriesTv(content) {
+
+  var outData = {
+
+    api_key: "edb8c608c84aa9d386ab6be738961e5f",
+    language: "it-IT",
+    query: content,
+  };
+
+  $.ajax({
+
+    url: "https://api.themoviedb.org/3/search/tv",
+    method: "GET",
+    data: outData,
+    success: function(inData){
+
+      var res = inData.results;
+      var count = res.length;
+
+      if (count > 0) {
+
+        printSeriesTv(res);
+      }
+
+    },
+    error: function(request, state, error){
+      console.log("request", request);
+      console.log("state", state);
+      console.log("error", error);
+    }
+  });
+}
+
+function getCoverLink(poster) {
+
+  var img = "https://image.tmdb.org/t/p/w185/";
+
+  if (poster == null) {
+
+    img = "";
+  } else {
+
+    img += poster;
+  }
+  return img;
+}
+
+function printFilms(dataList) {
+
+  var container = $(".films");
+
+  var template = $("#film_template").html();
+  var compiled = Handlebars.compile(template);
+
+
+  for (var i = 0; i < dataList.length; i++) {
+
+    var data = dataList[i];
+    var vote = Math.ceil(data.vote_average);
+
+    var tempData = {
+
+      type: "Movie",
       title: data.title,
       title_orig: data.original_title,
       language: data.original_language,
       flag: addFlag(data.original_language),
       vote: vote,
       stars: addStars(vote),
+      poster: getCoverLink(data.poster_path),
     }
 
     var film = compiled(tempData);
@@ -104,7 +182,10 @@ function inputSearch() {
   var me = $("#input_search");
   var content = me.val().toLowerCase();
 
+  clearOldResult();
+
   ajaxSearchMovie(content);
+  ajaxSearchSeriesTv(content);
 }
 
 function keyAction(e) {
