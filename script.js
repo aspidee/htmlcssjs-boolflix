@@ -56,6 +56,7 @@ function printSeriesTv(dataList) {
       flag: addFlag(data.original_language),
       vote: vote,
       stars: addStars(vote),
+      overview: data.overview,
       poster: getCoverLink(data.poster_path),
     }
 
@@ -133,6 +134,7 @@ function printFilms(dataList) {
       flag: addFlag(data.original_language),
       vote: vote,
       stars: addStars(vote),
+      overview: data.overview,
       poster: getCoverLink(data.poster_path),
     }
 
@@ -175,6 +177,14 @@ function ajaxSearchMovie(content) {
   });
 }
 
+function printInfoCard(me){
+
+ var me = $(this);
+
+ var infoCard = me.find(".film_box");
+ infoCard.toggleClass("show");
+}
+
 
 
 function inputSearch() {
@@ -202,10 +212,14 @@ function init() {
   inputbtn.click(inputSearch);
 
   var input = $("#input_search");
-  input.keyup(keyAction)
+  input.keyup(keyAction);
 
   // var inputbtn = $("#btn_search");
   // inputbtn.on("click", inputSearch);
+
+
+  $(document).on("mouseenter", ".film_container", printInfoCard);
+  $(document).on("mouseleave", ".film_container", printInfoCard);
 }
 
 $(document).ready(init);

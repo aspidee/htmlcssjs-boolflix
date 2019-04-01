@@ -24,7 +24,7 @@
           <div class="poster_container">
             <img class="poster" src="{{ poster }}" alt=""/>
           </div>
-          <div class="film_box">
+          <div class="film_box hidden">
             <ul>
               <li>{{ type }}</li>
               <li class="film_title">{{ title }}</li>
@@ -33,6 +33,7 @@
               <li class="film_flag">{{{ flag }}}</li>
               <li class="hidden">{{ vote }}</li>
               {{{ stars }}}
+              <li class="film_overview">{{ overview }}</li>
             </ul>
           </div>
         </div>

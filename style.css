@@ -133,7 +133,7 @@ input:focus {
 
   position: relative;
 
-  overflow: hidden;
+  overflow: scroll;
 
   box-shadow: 0px 0px 28px #404040;
   border: 0.4px solid #829196;
@@ -167,8 +167,18 @@ img.poster {
    margin-bottom: 20px;
 }
 
+.film_overview {
+  margin-top: 20px;
+
+}
+
+
 .hidden {
   display: none;
+}
+
+.show {
+  display: block;
 }
 
 .title > img {
