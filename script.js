@@ -1,6 +1,6 @@
 function addFlag(flag) {
 
-  return "<img src='img/" + flag + ".png' width='30px'>"
+  return "<img src='img/flags/" + flag + ".svg'>"
 }
 
 
@@ -26,7 +26,7 @@ function addStars(vote) {
 
 function clearOldResult() {
 
-  var films = $(".film_box");
+  var films = $(".film_container");
   films.remove();
 
   var inputSearch = $("#input_search");
