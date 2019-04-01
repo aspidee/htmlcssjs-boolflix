@@ -99,7 +99,7 @@ function ajaxSearchSeriesTv(content) {
 
 function getCoverLink(poster) {
 
-  var img = "https://image.tmdb.org/t/p/w185/";
+  var img = "https://image.tmdb.org/t/p/w342/";
 
   if (poster == null) {
 
